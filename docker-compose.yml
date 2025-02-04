@@ -1,3 +1,4 @@
+name: bp-crud-react-node-mysql-go
 services:
   frontend:
     build:
@@ -23,7 +24,7 @@ services:
   db:
     image: mysql:5.6
     environment:
-      - MYSQL_ROOT_PASSWORD="root"
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=test
     ports:
       - "3306:3306"
