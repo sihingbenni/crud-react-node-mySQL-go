@@ -58,3 +58,10 @@ docker ps -a --filter "name=crud-react-node-mysql-go" -q | ForEach-Object { dock
 docker images --filter "reference=*crud-react-node-mysql-go*" -q | ForEach-Object { docker rmi -f $_ }
 docker volume ls --filter "name=crud-react-node-mysql-go" -q | ForEach-Object { docker volume rm $_ }
 ```
+
+#### Delete everythin (in Linux)
+```bash
+    docker ps -a --filter "name=crud-react-node-mysql-go" -q | xargs -r docker rm -f
+    docker images --filter "reference=*crud-react-node-mysql-go*" -q | xargs -r docker rmi -f
+    docker volume ls --filter "name=crud-react-node-mysql-go" -q | xargs -r docker volume rm
+```
