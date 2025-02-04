@@ -1,0 +1,39 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    networks:
+      - bridge
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8800:8800"
+    depends_on:
+      - db
+    networks:
+      - bridge
+  db:
+    image: mysql:5.6
+    environment:
+      - MYSQL_ROOT_PASSWORD="root"
+      - MYSQL_DATABASE=test
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database_setup/setup_db.sql:/docker-entrypoint-initdb.d/setup_db.sql
+    networks:
+      - bridge
+volumes:
+  db_data:
+networks:
+  bridge:
+    driver: bridge
