@@ -39,3 +39,22 @@ http://localhost/dashboard/
 
 
 ![image](https://github.com/Norbert305/crud-react-node-mySQL-go/assets/83515541/4d825d2e-16a4-4a95-96b1-847e958d1a0f)
+
+### Docker
+
+#### Run
+```bash
+  docker compose up
+```
+
+#### Stop
+```bash
+  docker compose down
+```
+
+#### Delete everything (in Windows PowerShell) copy to terminal
+```
+docker ps -a --filter "name=crud-react-node-mysql-go" -q | ForEach-Object { docker rm -f $_ }
+docker images --filter "reference=*crud-react-node-mysql-go*" -q | ForEach-Object { docker rmi -f $_ }
+docker volume ls --filter "name=crud-react-node-mysql-go" -q | ForEach-Object { docker volume rm $_ }
+```
